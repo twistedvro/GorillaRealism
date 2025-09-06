@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorilla Realism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #2d2d2d;
+      text-align: center;
+      padding: 50px 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 3rem;
+      color: #ff6f61; /* Keep main title colored */
+      margin-bottom: 20px;
+      animation: slideIn 1s ease-out;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #fff;
+      animation: fadeIn 2s ease-in;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+      animation-delay: 0.5s;
+    }
+
+    section h2 {
+      font-family: 'Press Start 2P', cursive;
+      color: #fff; /* All headers are now white */
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    section p {
+      color: #fff;
+    }
+
+    /* Gallery slider */
+    .slider {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+      animation: fadeUp 1s forwards;
+      animation-delay: 1s;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.5s;
+    }
+
+    .slide img:hover {
+      transform: scale(1.05);
+    }
+
+    .slide-caption {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .prev, .next {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      user-select: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .prev:hover, .next:hover {
+      background: #ff6f61;
+      transform: scale(1.1);
+    }
+
+    .credits p {
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 1rem;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    .credits p:hover {
+      color: #ff6f61;
+    }
+
+    footer {
+      background: #2d2d2d;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 30px 10px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    @keyframes slideIn {
+      0% {transform: translateY(-50px); opacity: 0;}
+      100% {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes fadeUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Gorilla Realism</h1>
+    <p>Gorilla Realism offers a fun game with semi-realistic graphics and physics. The maps include: Nextbots, KOTH, Mall, Forest, and Caves.</p>
+  </header>
+
+  <section id="why-play">
+    <h2>Why Play Gorilla Realism?</h2>
+    <p>Experience Gorilla Tag like never before with enhanced physics, realistic movement, and unique maps to explore. Challenge yourself in KOTH, escape the Nextbots, or explore the Mall, Forest, and Caves!</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="images/map1.jpg" alt="Forest Map">
+          <div class="slide-caption">Forest Map</div>
+        </div>
+        <div class="slide">
+          <img src="images/map2.jpg" alt="KOTH Arena">
+          <div class="slide-caption">KOTH Arena</div>
+        </div>
+        <div class="slide">
+          <img src="images/map3.jpg" alt="Caves">
+          <div class="slide-caption">Caves</div>
+        </div>
+      </div>
+      <div class="slider-nav">
+        <div class="prev">&#10094;</div>
+        <div class="next">&#10095;</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credits">
+    <h2>Credits</h2>
+    <div class="credits">
+      <p><strong>Founders:</strong> iiaiden, JokerJosh</p>
+      <p><strong>Owner:</strong> Vrocacho</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Gorilla Realism. All Rights Reserved.
+  </footer>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const slide = document.querySelectorAll('.slide');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 0;
+
+    function showSlide(i) {
+      if(i < 0) index = slide.length - 1;
+      else if(i >= slide.length) index = 0;
+      else index = i;
+      slides.style.transform = 'translateX(' + (-index * 100) + '%)';
+    }
+
+    prev.addEventListener('click', () => showSlide(index - 1));
+    next.addEventListener('click', () => showSlide(index + 1));
+
+    // Auto-slide every 5 seconds
+    setInterval(() => showSlide(index + 1), 5000);
+
+    // Animate sections when scrolling into view
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom) {
+          section.style.opacity = '1';
+          section.style.transform = 'translateY(0)';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
