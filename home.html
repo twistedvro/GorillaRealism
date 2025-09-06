@@ -69,12 +69,12 @@ nav a:hover {
   box-shadow: 0 0 20px #ff6f61, 0 0 30px #ff6f61;
 }
 
-/* Sections with blurred backgrounds */
+/* Sections with blurred parallax backgrounds */
 section {
   position: relative;
   padding: 120px 20px;
   max-width: 1000px;
-  margin: 50px auto;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 20px;
   opacity: 0;
@@ -87,9 +87,10 @@ section::before {
   background-image: var(--bg-url);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   filter: blur(12px) brightness(0.4);
   z-index:0;
+  transform: translateY(var(--parallax, 0px));
+  transition: transform 0.1s linear;
 }
 section h2, section p {
   position: relative;
@@ -210,20 +211,29 @@ function showSlide(i){
 prev.addEventListener('click',()=>showSlide(index-1));
 next.addEventListener('click',()=>showSlide(index+1));
 setInterval(()=>showSlide(index+1),5000);
+showSlide(index);
 
 // Scroll animations
-const sections=document.querySelectorAll('section');
+const sections = document.querySelectorAll('section');
 window.addEventListener('scroll',()=>{
-  const triggerBottom=window.innerHeight/5*4;
+  const triggerBottom = window.innerHeight/5*4;
   sections.forEach(section=>{
-    const sectionTop=section.getBoundingClientRect().top;
+    const sectionTop = section.getBoundingClientRect().top;
     if(sectionTop<triggerBottom){
       section.style.opacity='1';
       section.style.transform='translateY(0)';
     }
   });
 });
-showSlide(index);
+
+// Parallax effect for section backgrounds
+window.addEventListener('scroll', () => {
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const parallax = rect.top * 0.2;
+    section.style.setProperty('--parallax', `${parallax}px`);
+  });
+});
 </script>
 
 </body>
