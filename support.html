@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - Gorilla Realism</title>
+
+<!-- Custom font -->
+<style>
+@font-face {
+  font-family: 'Adore64';
+  src: url('fonts/Adore64.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Adore64', 'Orbitron', sans-serif;
+  background:#050909;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* Background layers */
+.bg {
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  background-size:cover;background-attachment:fixed;
+  z-index:-3;
+  filter: brightness(0.4);
+}
+.bg1 { background:url('images/map1.png') no-repeat center; }
+.bg2 { background:url('images/map2.png') no-repeat center; mix-blend-mode:screen; opacity:0.3; }
+
+/* Falling bananas canvas */
+#bananas {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:-1;
+}
+
+/* Navbar */
+nav {
+  position:sticky; top:0;
+  background:rgba(15,25,25,0.8);
+  backdrop-filter:blur(10px);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:15px 40px; z-index:10;
+}
+nav img { height:40px; }
+nav .links a {
+  margin-left:20px;
+  text-decoration:none;
+  color:#0ff;
+  text-shadow:0 0 8px #0ff;
+  padding:8px 15px;
+  border:2px solid #0ff;
+  border-radius:10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center bottom;
+}
+nav .links a:hover {
+  animation: wobble 0.6s ease infinite;
+  box-shadow: 0 12px 25px rgba(0, 255, 255, 0.5);
+}
+nav .links a:active {
+  transform: scale(0.95) rotate(0deg);
+  box-shadow: 0 6px 12px rgba(0, 255, 255, 0.3);
+}
+
+/* Hero */
+.hero {
+  text-align:center;
+  padding:120px 20px 60px;
+}
+.hero h1 {
+  font-size:3rem;
+  color:#ff004f;
+  text-shadow:0 0 15px #ff004f,0 0 25px #ff66a1;
+  margin-bottom:15px;
+}
+.hero p {
+  font-size:1.2rem;
+  color:#0ff;
+  text-shadow:0 0 10px #0ff;
+}
+
+/* Section Glass Panel */
+.section {
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  margin:40px auto;
+  padding:40px;
+  border-radius:20px;
+  max-width:800px;
+  box-shadow:0 0 30px rgba(0,255,255,0.2);
+}
+
+/* Contact info */
+.contact {
+  text-align:center;
+  margin-bottom:30px;
+}
+.contact a {
+  color:#ff0;
+  text-decoration:none;
+  font-weight:bold;
+  text-shadow:0 0 10px #ff0;
+}
+.contact a:hover {
+  color:#000; background:#ff0;
+  padding:5px 10px;
+  border-radius:8px;
+}
+
+/* Form */
+form {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+input, textarea {
+  padding:15px;
+  border:none;
+  border-radius:10px;
+  font-size:1rem;
+  outline:none;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+textarea { resize:none; height:120px; }
+button, .back-home {
+  padding:15px;
+  font-size:1.2rem;
+  font-weight:bold;
+  color:#000;
+  background:#0ff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center bottom;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+button:hover, .back-home:hover {
+  animation: wobble 0.6s ease infinite;
+  box-shadow: 0 12px 25px rgba(0, 255, 255, 0.5);
+}
+button:active, .back-home:active {
+  transform: scale(0.95) rotate(0deg);
+  box-shadow: 0 6px 12px rgba(0, 255, 255, 0.3);
+}
+
+/* Success Message */
+.success-message {
+  display:none;
+  margin-top:20px;
+  text-align:center;
+  font-size:1.2rem;
+  color:#0f0;
+  text-shadow:0 0 10px #0f0;
+}
+
+/* Wobble animation */
+@keyframes wobble {
+  0% { transform: rotate(-3deg) translateY(-2px); }
+  25% { transform: rotate(3deg) translateY(-4px); }
+  50% { transform: rotate(-3deg) translateY(-2px); }
+  75% { transform: rotate(3deg) translateY(-4px); }
+  100% { transform: rotate(-3deg) translateY(-2px); }
+}
+
+/* Footer */
+footer {
+  text-align:center;
+  padding:30px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+}
+footer img { height:60px; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<div class="bg bg1"></div>
+<div class="bg bg2"></div>
+<canvas id="bananas"></canvas>
+
+<!-- Navbar -->
+<nav>
+  <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Support</h1>
+  <p>Need help? We’ve got you covered.</p>
+</section>
+
+<!-- Support Section -->
+<div class="section">
+  <div class="contact">
+    <p>You can reach us directly at:</p>
+    <p><a href="mailto:support@gorillarealism.com">support@gorillarealism.com</a></p>
+  </div>
+
+  <!-- Formspree form -->
+  <form id="supportForm" action="https://formspree.io/f/movnypjo" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="_replyto" placeholder="Your Email" required>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <textarea name="message" placeholder="Describe your issue..." required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div class="success-message" id="successMessage">
+    ✅ Thanks! Your message has been sent.
+  </div>
+
+  <!-- Back to Home button -->
+  <a href="index.html" class="back-home" style="margin-top:30px;">⬅ Back to Home</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; Gorilla Realism<br>
+  <img src="images/esrb.svg" alt="E for Everyone">
+</footer>
+
+<script>
+// Handle form submit with AJAX for smooth experience
+const form = document.getElementById('supportForm');
+const successMessage = document.getElementById('successMessage');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+  if (response.ok) {
+    form.reset();
+    successMessage.style.display = 'block';
+  } else {
+    alert("Oops! Something went wrong. Please try again.");
+  }
+});
+
+// Falling bananas
+const canvas=document.getElementById("bananas");
+const ctx=canvas.getContext("2d");
+let bananas=[];
+const bananaImg=new Image();
+bananaImg.src="images/banana.png";
+
+function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+window.addEventListener("resize",resizeCanvas);
+resizeCanvas();
+
+class Banana {
+  constructor(){
+    this.x=Math.random()*canvas.width;
+    this.y=-50;
+    this.speed=2+Math.random()*3;
+    this.angle=Math.random()*Math.PI*2;
+    this.spin=0.02+Math.random()*0.05;
+    this.size=30+Math.random()*20;
+  }
+  update(){ this.y+=this.speed; this.angle+=this.spin; }
+  draw(){
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.angle);
+    ctx.drawImage(bananaImg,-this.size/2,-this.size/2,this.size,this.size);
+    ctx.restore();
+  }
+}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  bananas.forEach((b,i)=>{
+    b.update();b.draw();
+    if(b.y>canvas.height+50)bananas.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+setInterval(()=>bananas.push(new Banana()),1500);
+</script>
+
+</body>
+</html>
